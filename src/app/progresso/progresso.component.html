@@ -1,0 +1,16 @@
+<div class="progress-container">
+    <h2 class="progress-header">Resoluções Em Progresso</h2>
+    <div *ngIf="itensProgresso.length > 0; else semIncidents">
+        <ul class="progress-list">
+            <li *ngFor="let itemProgresso of itensProgresso" class="progress-item">
+                <p>{{itemProgresso.title}}</p>
+                <button (click)="removerIncidentProgresso(itemProgresso.id)"><i class="fa-solid fa-check"></i></button>
+            </li>
+        </ul>
+        <button class="resolve-button" (click)="resolver()">
+            <i class="fas fa-check"></i> Resolver Todos
+        </button>
+        
+    </div>
+    <ng-template #semIncidents class="no-incidents">Nenhum incidente foi adicionado.</ng-template>
+</div>

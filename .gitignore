@@ -1,0 +1,79 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+/dist
+/tmp
+/out-tsc
+/bazel-out
+
+# Node
+/node_modules
+npm-debug.log
+yarn-error.log
+
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Arquivos de cache Sass
+.sass-cache/
+
+# Arquivos de cache de tipos e dependências
+/typings
+
+# Arquivos de teste e cobertura de código
+/coverage
+
+# Arquivos de configuração do editor C9
+.c9/
+
+# Arquivos de configuração do Sublime Text
+.project
+.classpath
+.settings/
+*.sublime-workspace
+
+# Arquivos de histórico do VSCode
+.history/
+
+# Arquivos de log npm e Yarn
+npm-debug.log
+yarn-error.log
+
+# Angular generated files
+/dist/
+/tmp/
+/out-tsc/
+/bazel-out/
+
+# Arquivos de cache do Angular
+/.angular/cache/
+
+# Arquivos de configuração e cache do Nebular
+.nebular/

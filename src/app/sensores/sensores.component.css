@@ -1,0 +1,56 @@
+.container{
+    min-height: 600px;
+}
+:host {
+    display: block;
+    margin: 20px;
+  }
+  
+  h2 {
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 8px 16px;
+    margin-right: 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  input[type="text"],
+  input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .buttons {
+    margin-top: 15px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+  }
+  

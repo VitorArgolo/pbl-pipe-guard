@@ -1,0 +1,19 @@
+<header class="custom-header">
+    <h1 class="header-title">
+        <span><img src="assets/reciclando.png" width="5%" alt="">Pipe</span><span>Guard</span>
+    </h1>
+    <div class="header-nav">
+        <nav nbMenu>
+            <ul>
+                <li><a routerLink="incidents" nbMenuItem><i class="fa-solid fa-list"></i> Listar Incidentes</a></li>
+                <li><a routerLink="progresso" nbMenuItem><i class="fa-solid fa-sync"></i> Em Progresso <span>{{progressoService.obtemProgresso().length}}</span></a></li>
+                <li><a routerLink="requisicao" nbMenuItem><i class="fa-solid fa-address-book"></i> Requisições Manuais e Contatos</a></li>
+                <li><a routerLink="geofones" nbMenuItem><i class="fas fa-cogs"></i> Gestão de Sensores</a></li>
+                <li><a routerLink="status" nbMenuItem><i class="fa-solid fa-check-circle"></i> Status de Servidor e API</a></li>
+                
+                <li></li>
+            </ul>
+        </nav>
+        <app-barra-pesquisa></app-barra-pesquisa>
+    </div>
+</header>

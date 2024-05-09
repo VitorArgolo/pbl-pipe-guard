@@ -1,0 +1,31 @@
+<div class="container">
+<div *ngIf="!incidents" class="loading">
+    <div class="spinner"></div>
+</div>
+<div class="widt-min-and-max">
+    <table class="incident-table">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="incidents.length > 0; else semIncidents">
+                <tr *ngFor="let incident of incidents">
+                    <td>{{ incident.title }}</td>
+                    <td>{{ incident.description }}</td>
+                    <td>
+                        <button nbButton routerLink="/incidents/{{incident.id}}">
+                            <i class="fas fa-arrow-right"></i> Mais detalhes
+                        </button>
+                        
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    <ng-template #semIncidents>Não existem incidentes.</ng-template>
+</div>
+</div>
