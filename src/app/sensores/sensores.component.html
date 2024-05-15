@@ -4,7 +4,7 @@
     <li *ngFor="let incident of incidents">
       <p><strong>Título:</strong> {{ incident.title }}</p>
       <p><strong>Descrição:</strong> {{ incident.description }}</p>
-      <p><strong>Vazamento:</strong> {{ incident.leak ? 'Sim' : 'Não' }}</p>
+      <p><strong>Vazamento:</strong> {{ incident.leak.toString() === '1'? 'Sim' : 'Não' }}</p>
       <p><strong>Severidade:</strong> {{ incident.severity }}</p>
       <button (click)="deleteExistingIncident(incident.id)">Deletar</button>
       <button (click)="toggleEdit(incident)">Editar</button> <!-- Adicione este botão para acionar a edição -->
