@@ -1,70 +1,74 @@
-import { Component } from '@angular/core';
+//sensores.component.ts
 
-interface Sensor {
-  id: number;
-  localizacao: string;
-  deteccao: string;
-}
+import { Component, OnInit } from '@angular/core';
+import axios from 'axios';
+import {
+  createIncident,
+  deleteIncident,
+  fillIncidents,
+  IIncident,
+  listIncidents,
+  updateIncident,
+  loginAndGetToken
+} from '../incidents';
 
 @Component({
   selector: 'app-sensores',
   templateUrl: './sensores.component.html',
   styleUrls: ['./sensores.component.css']
 })
-export class SensoresComponent {
-  sensores: Sensor[] = [
-    { id: 1, localizacao: 'Bloco A, Piso 1', deteccao: 'ligado' },
-    { id: 2, localizacao: 'Bloco A, Piso 2', deteccao: 'desligado' }
-  ];
+export class SensoresComponent implements OnInit {
+  incidents: IIncident[] = [];
+  error: string | null = null;
+  newIncidentData: Partial<IIncident> = {};
+  updatedIncidentData: Partial<IIncident> = {};
+  editingIncident: IIncident | null = null;
+  constructor() { }
 
-  novoSensor: Partial<Sensor> = {};
-
-  formularioVisivel = false;
-  edicao = false;
-  sensorSelecionado: Sensor | null = null;
-
-  mostrarFormulario(edicao = false, sensor: Sensor | null = null) {
-    this.edicao = edicao;
-    this.sensorSelecionado = sensor;
-    this.formularioVisivel = true;
-    if (sensor) {
-      this.novoSensor = { ...sensor };
-    } else {
-      this.novoSensor = {
-        localizacao: '',
-        deteccao: ''
-      };
+  async ngOnInit() {
+    try {
+      this.incidents = await fillIncidents();
+    } catch (error) {
+      this.error = 'Erro ao carregar os incidentes.';
     }
   }
 
-  cancelar() {
-    this.formularioVisivel = false;
-    this.novoSensor = {
-      localizacao: '',
-      deteccao: ''
-    };
+  async createNewIncident(incidentData: Partial<IIncident>) {
+    try {
+      const token = await loginAndGetToken();
+      const newIncident = await createIncident(token, incidentData);
+      this.incidents.push(newIncident);
+    } catch (error) {
+      this.error = 'Erro ao criar incidente.';
+    }
   }
 
-  salvarSensor() {
-    if (this.edicao && this.sensorSelecionado) {
-      const index = this.sensores.findIndex(s => s.id === this.sensorSelecionado!.id);
+  async updateExistingIncident(incidentId: number, incidentData: Partial<IIncident>) {
+    try {
+      const token = await loginAndGetToken();
+      const updatedIncident = await updateIncident(token, incidentId, incidentData);
+      const index = this.incidents.findIndex(incident => incident.id === incidentId);
       if (index !== -1) {
-        this.sensores[index] = { ...this.novoSensor } as Sensor;
+        this.incidents[index] = updatedIncident;
+        this.editingIncident = null; // Definir editingIncident como null para ocultar o formulário de edição
       }
-    } else {
-      this.sensores.push({
-        id: this.sensores.length + 1,
-        localizacao: this.novoSensor.localizacao!,
-        deteccao: this.novoSensor.deteccao!
-      } as Sensor);
+    } catch (error) {
+      this.error = 'Erro ao atualizar incidente.';
     }
-    this.cancelar();
   }
 
-  excluirSensor(sensor: Sensor) {
-    const index = this.sensores.findIndex(s => s.id === sensor.id);
-    if (index !== -1) {
-      this.sensores.splice(index, 1);
+  async deleteExistingIncident(incidentId: number) {
+    try {
+      const token = await loginAndGetToken();
+      await deleteIncident(token, incidentId);
+      this.incidents = this.incidents.filter(incident => incident.id !== incidentId);
+    } catch (error) {
+      this.error = 'Erro ao deletar incidente.';
     }
+  }
+
+  toggleEdit(incident: IIncident) {
+    this.editingIncident = this.editingIncident === incident ? null : incident;
+    this.updatedIncidentData = this.editingIncident ? { ...incident } : {};
   }
 }

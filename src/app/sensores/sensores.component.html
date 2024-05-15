@@ -45,4 +45,71 @@
       </tbody>
     </table>
   </div>
-  
+  //sensore.html
+<div>
+  <h1>Lista de Incidentes</h1>
+  <ul *ngIf="!error">
+    <li *ngFor="let incident of incidents">
+      <p><strong>Título:</strong> {{ incident.title }}</p>
+      <p><strong>Descrição:</strong> {{ incident.description }}</p>
+      <p><strong>Vazamento:</strong> {{ incident.leak ? 'Sim' : 'Não' }}</p>
+      <p><strong>Severidade:</strong> {{ incident.severity }}</p>
+      <button (click)="deleteExistingIncident(incident.id)">Deletar</button>
+      <button (click)="toggleEdit(incident)">Editar</button> <!-- Adicione este botão para acionar a edição -->
+      <div *ngIf="incident.id === editingIncident?.id"> <!-- Formulário de edição aparece apenas se este incidente estiver em modo de edição -->
+        <h2>Editar Incidente</h2>
+        <form (submit)="updateExistingIncident(incident.id, updatedIncidentData)">
+          <label>
+            Título:
+            <input type="text" [(ngModel)]="updatedIncidentData.title" name="title" required>
+          </label>
+          <label>
+            Descrição:
+            <textarea [(ngModel)]="updatedIncidentData.description" name="description" required></textarea>
+          </label>
+          <label>
+            Vazamento:
+            <input type="checkbox" [(ngModel)]="updatedIncidentData.leak" name="leak">
+          </label>
+          <label>
+            Severidade:
+            <select [(ngModel)]="updatedIncidentData.severity" name="severity" required>
+              <option value="Baixa">Baixa</option>
+              <option value="Média">Média</option>
+              <option value="Alta">Alta</option>
+            </select>
+          </label>
+          <button type="submit">Atualizar</button>
+        </form>
+      </div>
+    </li>
+  </ul>
+  <p *ngIf="error" style="color: red;">{{ error }}</p>
+</div>
+
+<div>
+  <h2>Criar Novo Incidente</h2>
+  <form (submit)="createNewIncident(newIncidentData)">
+    <label>
+      Título:
+      <input type="text" [(ngModel)]="newIncidentData.title" name="title" required>
+    </label>
+    <label>
+      Descrição:
+      <textarea [(ngModel)]="newIncidentData.description" name="description" required></textarea>
+    </label>
+    <label>
+      Vazamento:
+      <input type="checkbox" [(ngModel)]="newIncidentData.leak" name="leak">
+    </label>
+    <label>
+      Severidade:
+      <select [(ngModel)]="newIncidentData.severity" name="severity" required>
+        <option value="Baixa">Baixa</option>
+        <option value="Média">Média</option>
+        <option value="Alta">Alta</option>
+      </select>
+    </label>
+    <button type="submit">Criar</button>
+  </form>
+</div>
