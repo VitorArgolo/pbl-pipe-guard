@@ -4,7 +4,11 @@ import { IIncident, fillIncidents } from './incidents';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Cache-Control': 'no-cache'
+  })
+};
 @Injectable({
   providedIn: 'root'
 })

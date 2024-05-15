@@ -17,7 +17,6 @@ export class DetalhesIncidentComponent implements OnInit {
   constructor(
     private incidentsService: IncidentsService,
     private route: ActivatedRoute,
-    private notificacaoService: NotificacaoService,
     private progressoService: ProgressoService
   ){}
 
