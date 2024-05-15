@@ -12,11 +12,12 @@
         </tr>
         <tr>
             <td>Descrição:</td>
-            <td>{{incident?.description}}</td>
+            <td>{{incident?.description}}</td> 
         </tr>
         <tr>
             <td>Vazamento:</td>
-            <td>{{incident?.leak ? 'Sim' : 'Não'}}</td>
+            <td>{{ incident?.leak === '0' ? "não" : "sim" }}</td>
+
         </tr>
         <tr *ngIf="incident?.leak">
             <td>Nível de Gravidade:</td>
