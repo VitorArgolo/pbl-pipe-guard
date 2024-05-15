@@ -9,7 +9,7 @@
       <button (click)="deleteExistingIncident(incident.id)">Deletar</button>
       <button (click)="toggleEdit(incident)">Editar</button> <!-- Adicione este botão para acionar a edição -->
       <div *ngIf="incident.id === editingIncident?.id"> <!-- Formulário de edição aparece apenas se este incidente estiver em modo de edição -->
-        <h2>Editar Incidente</h2>
+        <h2>Editar Sensor</h2>
         <form (submit)="updateExistingIncident(incident.id, updatedIncidentData)">
           <label>
             Título:
@@ -40,7 +40,7 @@
 </div>
 
 <div>
-  <h2>Criar Novo Incidente</h2>
+  <h2>Criar Novo Sensor</h2>
   <form (submit)="createNewIncident(newIncidentData)">
     <label>
       Título:
