@@ -10,7 +10,7 @@ export interface IIncident {
 
 export interface IIncidentsProgresso extends IIncident {
     quantidade: number;
-}
+}   
 
 var credenciais = { username: 'admin', password: 'admin' };
 
