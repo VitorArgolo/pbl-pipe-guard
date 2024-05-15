@@ -14,14 +14,15 @@
         <tbody>
             <ng-container *ngIf="incidents.length > 0; else semIncidents">
                 <tr *ngFor="let incident of incidents">
-                    <td>{{ incident.title }}</td>
-                    <td>{{ incident.description }}</td>
-                    <td>
-                        <button nbButton routerLink="/incidents/{{incident.id}}">
-                            <i class="fas fa-arrow-right"></i> Mais detalhes
-                        </button>
-                        
-                    </td>
+                    <ng-container *ngIf="incident.leak.toString() === '1'">
+                        <td>{{ incident.title }}</td>
+                        <td>{{ incident.description }}</td>
+                        <td>
+                            <button nbButton routerLink="/incidents/{{incident.id}}">
+                                <i class="fas fa-arrow-right"></i> Mais detalhes
+                            </button>
+                        </td>
+                    </ng-container>
                 </tr>
             </ng-container> 
         </tbody>
