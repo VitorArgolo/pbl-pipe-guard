@@ -1,53 +1,5 @@
-<!-- sensores.component.html -->
-<div class="container">
-    <h2>Sistema de Sensores de Geofones</h2>
-    <button (click)="mostrarFormulario()">Adicionar Novo Sensor</button>
-    <div *ngIf="formularioVisivel">
-      <h3>{{ edicao ? 'Editar Sensor' : 'Adicionar Sensor' }}</h3>
-      <form (ngSubmit)="salvarSensor()">
-        <div class="form-group">
-          <label for="localizacao">Localização:</label>
-          <input type="text" id="localizacao" name="localizacao" [(ngModel)]="novoSensor.localizacao" required>
-        </div>
-        <div class="form-group">
-          <label for="deteccao">Estado de Detecção (Hz):</label>
-          <input type="number" id="deteccao" name="deteccao" [(ngModel)]="novoSensor.deteccao" required>
-        </div>
-        <div class="buttons">
-          <button type="submit">{{ edicao ? 'Salvar Alterações' : 'Salvar' }}</button>
-          <button type="button" (click)="cancelar()">Cancelar</button>
-        </div>
-      </form>
-    </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Sensor ID</th>
-          <th>Localização</th>
-          <th>Status</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let sensor of sensores">
-          <td>{{ sensor.id }}</td>
-          <td>{{ sensor.localizacao }}</td>
-          <td>{{ sensor.deteccao }}</td>
-          <td>
-            <button (click)="mostrarFormulario(true, sensor)">
-                <i class="fas fa-edit"></i> Editar
-            </button>
-            <button (click)="excluirSensor(sensor)">
-                <i class="fas fa-trash-alt"></i> Excluir
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  //sensore.html
 <div>
-  <h1>Lista de Incidentes</h1>
+  <h1>Lista de Sensores</h1>
   <ul *ngIf="!error">
     <li *ngFor="let incident of incidents">
       <p><strong>Título:</strong> {{ incident.title }}</p>
