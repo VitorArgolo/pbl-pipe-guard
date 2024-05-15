@@ -16,7 +16,7 @@ export class IncidentsComponent implements OnInit {
   incidents: IIncident[] = []; // Inicializando como uma array vazia
 
   constructor(
-    private incidentsService: IncidentsService,
+    private incidentsService: IncidentsService, 
     private route: ActivatedRoute
   ) {}
 
