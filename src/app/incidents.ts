@@ -8,6 +8,8 @@ export interface IIncident {
     severity: string;
 }
 
+
+
 export interface IIncidentsProgresso extends IIncident {
     quantidade: number;
 }   
