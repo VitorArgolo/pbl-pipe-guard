@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { IIncident, fillIncidents } from './incidents';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -25,4 +26,6 @@ export class IncidentsService {
   getOne(incidentId: number){
     return this.incidents.find(incident => incident.id === incidentId)
   }  
+
+  
 }
