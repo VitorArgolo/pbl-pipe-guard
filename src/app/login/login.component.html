@@ -1,0 +1,14 @@
+<div class="body">
+	<div class="main">
+	  <div class="login">
+		<form>
+		  <label for="chk" aria-hidden="true" class="label-login"><i class="pi pi-user-plus"></i>Login</label>
+		  <input type="email" name="email" placeholder="Email" required [(ngModel)]="username">
+		  <input type="password" name="password" placeholder="Senha" required [(ngModel)]="password">
+		  <button (click)="login()">Login</button>
+		  <button routerLink="/register">Register</button>
+		</form>
+	  </div>
+	</div>
+  </div>
+  

@@ -1,0 +1,9 @@
+<div *ngIf="user" class="user-container">
+    <div class="user-info">
+      <p>Bem-vindo, {{ user.name }}</p>
+    </div>
+    <div class="logout-button" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i> <!-- Ícone de logout -->
+    </div>
+  </div>
+  
