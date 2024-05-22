@@ -1,38 +1,62 @@
-<div class="body">
-  <div class="main">
-    <div class="signup">
-      <form [formGroup]="signupForm" (ngSubmit)="register()">
-        <label for="chk" aria-hidden="true" class="label-signup">Sign up</label>
-        
-        <input type="email" formControlName="email" placeholder="Email">
-        <div *ngIf="email?.invalid && email?.touched">
-          <small *ngIf="email?.errors?.['required']">Email é obrigatório</small>
-          <small *ngIf="email?.errors?.['email']">Formato de email inválido</small>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <h2 class="card-title">Sign up</h2>
+          <form [formGroup]="signupForm" (ngSubmit)="register()">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><label>Email:</label></td>
+                  <td>
+                    <input type="email" class="form-control" formControlName="email" placeholder="Email">
+                    <div *ngIf="email?.invalid && email?.touched">
+                      <small *ngIf="email?.errors?.['required']" class="text-danger">Email é obrigatório</small>
+                      <small *ngIf="email?.errors?.['email']" class="text-danger">Formato de email inválido</small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Senha:</label></td>
+                  <td>
+                    <input type="password" class="form-control" formControlName="password" placeholder="Senha">
+                    <div *ngIf="password?.invalid && password?.touched">
+                      <small *ngIf="password?.errors?.['required']" class="text-danger">Senha é obrigatória</small>
+                      <small *ngIf="password?.errors?.['minlength']" class="text-danger">Senha deve ter pelo menos 8 caracteres</small>
+                      <small *ngIf="password?.errors?.['maxlength']" class="text-danger">Senha deve ter no máximo 20 caracteres</small>
+                      <small *ngIf="password?.errors?.['pattern']" class="text-danger">Senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial</small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Nome:</label></td>
+                  <td>
+                    <input type="text" class="form-control" formControlName="name" placeholder="Nome">
+                    <div *ngIf="name?.invalid && name?.touched">
+                      <small *ngIf="name?.errors?.['required']" class="text-danger">Nome é obrigatório</small>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><label>Telefone:</label></td>
+                  <td>
+                    <input type="text" class="form-control" formControlName="phone" placeholder="(00) 0000-0000" appPhoneMask>
+                    <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched">
+                      <small *ngIf="signupForm.get('phone')?.errors?.['required']" class="text-danger">Telefone é obrigatório</small>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            
+            <button type="submit" class="btn btn-primary">Sign up</button>
+            <button routerLink="/login" type="button" class="btn btn-secondary">Login</button>
+            
+            <div *ngIf="errorMessage" class="alert alert-danger mt-3">{{ errorMessage }}</div>
+          </form>
         </div>
-        
-        <input type="password" formControlName="password" placeholder="Senha">
-        <div *ngIf="password?.invalid && password?.touched">
-          <small *ngIf="password?.errors?.['required']">Senha é obrigatória</small>
-          <small *ngIf="password?.errors?.['minlength']">Senha deve ter pelo menos 8 caracteres</small>
-          <small *ngIf="password?.errors?.['maxlength']">Senha deve ter no máximo 20 caracteres</small>
-          <small *ngIf="password?.errors?.['pattern']">Senha deve conter pelo menos uma letra maiúscula, uma letra minúscula, um número e um caractere especial</small>
-        </div>
-        
-        <input type="text" formControlName="name" placeholder="Nome">
-        <div *ngIf="name?.invalid && name?.touched">
-          <small *ngIf="name?.errors?.['required']">Nome é obrigatório</small>
-        </div>
-        
-        <input type="text" formControlName="phone" placeholder="(00) 0000-0000" appPhoneMask>
-        <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched">
-          <small *ngIf="signupForm.get('phone')?.errors?.['required']">Telefone é obrigatório</small>
-        </div>
-        
-        <button type="submit">Sign up</button>
-        <button routerLink="/login" type="button">Login</button>
-        
-        <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
-      </form>
+      </div>
     </div>
   </div>
 </div>

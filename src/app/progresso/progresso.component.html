@@ -1,7 +1,6 @@
-<div>
-  <h2>Lista de Progresso de Incidentes</h2>
-  <table>
-    <thead>
+<div class="container">
+  <table class="table">
+    <thead class="thead-dark">
       <tr>
         <th>Id</th>
         <th>Título</th>
@@ -17,17 +16,17 @@
         <td>Gabriel</td>
         <td>{{ incidente.description }}</td>
         <td>
-          <button (click)="resolverVazamento(incidente.id)">Resolver Vazamento</button>
-          <button (click)="removerIncidentProgresso(incidente.id)">Remover de Progresso</button>
+          <button class="btn btn-primary" (click)="resolverVazamento(incidente.id)">Resolver Vazamento</button>
+          <button class="btn btn-danger" (click)="removerIncidentProgresso(incidente.id)">Remover de Progresso</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <div *ngIf="error" class="error-message">
+  <div *ngIf="error" class="alert alert-danger">
     {{ error }}
   </div>
   <div *ngIf="total > 0" class="total">
     Total: {{ total }}
   </div>
-  <button (click)="resolver()">Resolver Todos</button>
+  <button hidden class="btn btn-success" (click)="resolver()">Resolver Todos</button>
 </div>

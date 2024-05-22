@@ -1,9 +1,10 @@
 <div *ngIf="user" class="user-container">
-    <div class="user-info">
-      <p>Bem-vindo, {{ user.name }}</p>
-    </div>
-    <div class="logout-button" (click)="logout()">
-      <i class="fas fa-sign-out-alt"></i> <!-- Ícone de logout -->
-    </div>
+  <div class="user-info">
+    <p>Bem-vindo, <span class="user-name">{{ user.name }}</span></p>
   </div>
-  
+  <div class="logout-button">
+    <a href="#" (click)="logout()" class="logout-link">
+      <i class="bi bi-box-arrow-right"></i> <!-- Ícone de logout -->
+    </a>
+  </div>
+</div>

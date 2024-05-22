@@ -1,26 +1,39 @@
-<header class="custom-header">
-    <h1 class="header-title">
-        <span><img src="assets/reciclando.png" width="5%" alt="">Pipe</span><span>Guard</span>
+<header class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <h1 class="navbar-brand">
+        <img src="assets/reciclando.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        Pipe Guard
     </h1>
-    <app-barra-pesquisa></app-barra-pesquisa>
 
-    <div class="header-nav">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-        <nav nbMenu>
-            
-            <ul>
-                
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" routerLink="incidents"><i class="fa-solid fa-list"></i> Listar Incidentes</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="progresso"><i class="fa-solid fa-sync"></i> Em Progresso <span>{{progressoService.obtemProgresso().length}}</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="requisicao"><i class="fa-solid fa-address-book"></i> Requisições Manuais e Contatos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="geofones"><i class="fas fa-cogs"></i> Gestão de Sensores</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" routerLink="status"><i class="fa-solid fa-check-circle"></i> Status de Servidor e API</a>
+            </li>
+            <li class="nav-item">
+                <app-user-status></app-user-status>
+            </li>
+        </ul>
 
-                <li></li>
-                <li><a routerLink="incidents" nbMenuItem><i class="fa-solid fa-list"></i> Listar Incidentes</a></li>
-                <li><a routerLink="progresso" nbMenuItem><i class="fa-solid fa-sync"></i> Em Progresso <span>{{progressoService.obtemProgresso().length}}</span></a></li>
-                <li><a routerLink="requisicao" nbMenuItem><i class="fa-solid fa-address-book"></i> Requisições Manuais e Contatos</a></li>
-                <li><a routerLink="geofones" nbMenuItem><i class="fas fa-cogs"></i> Gestão de Sensores</a></li>
-                <li><a routerLink="status" nbMenuItem><i class="fa-solid fa-check-circle"></i> Status de Servidor e API</a></li>
-                
-                <li><app-user-status></app-user-status></li>
-            </ul>
-        </nav>
+        <!-- Barra de Pesquisa -->
+        <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="pi pi-search"></i></button>
+        </form>
     </div>
-    
 </header>

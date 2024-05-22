@@ -1,6 +1,8 @@
-<form class="p-form-inline p-d-flex p-jc-center p-ai-center" (ngSubmit)="pesquisar()">
-  <div class="p-inputgroup">
-    <input type="text" pInputText name="title" [(ngModel)]="title" placeholder="Pesquisar..." (input)="pesquisar()">
-    <button type="submit" pButton icon="pi pi-search" class="p-button-primary"></button>
+<form class="form-inline justify-content-center align-items-center" (ngSubmit)="pesquisar()">
+  <div class="input-group">
+    <input type="text" class="form-control" name="title" [(ngModel)]="title" placeholder="Pesquisar..." (input)="pesquisar()">
+    <div class="input-group-append">
+      <button type="submit" class="btn btn-primary"><i class="pi pi-search"></i></button>
+    </div>
   </div>
 </form>

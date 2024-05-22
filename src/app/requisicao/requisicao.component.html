@@ -1,69 +1,66 @@
-<h2 class="p-text-center">Faça uma requisição</h2>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <p-card class="p-card p-fluid contact__container">
+        <form class="contact-form" [formGroup]="formRequisicao" (ngSubmit)="enviarFormulario()">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><input type="text" class="form-control" placeholder="Digite seu nome" formControlName="nome"></td>
+                <td>
+                  <div *ngIf="formRequisicao.controls['nome'].invalid && (formRequisicao.controls['nome'].touched || formRequisicao.controls['nome'].dirty)">
+                    <small class="error-message" *ngIf="formRequisicao.controls['nome'].hasError('minlength')">Esse campo precisa ter no mínimo 4 caracteres.</small>
+                    <small class="error-message" *ngIf="formRequisicao.controls['nome'].hasError('required')">Esse campo precisa ser preenchido.</small>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="text" class="form-control" placeholder="Digite o assunto" formControlName="assunto"></td>
+                <td>
+                  <div *ngIf="formRequisicao.controls['assunto'].invalid && (formRequisicao.controls['assunto'].touched || formRequisicao.controls['assunto'].dirty)">
+                    <small class="error-message" *ngIf="formRequisicao.controls['assunto'].hasError('minlength')">Esse campo precisa ter no mínimo 10 caracteres.</small>
+                    <small class="error-message" *ngIf="formRequisicao.controls['assunto'].hasError('required')">Esse campo precisa ser preenchido.</small>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="tel" class="form-control" placeholder="(00) 0000-0000" mask="(00) 0 0000-0000" formControlName="telefone"></td>
+                <td>
+                  <div *ngIf="formRequisicao.controls['telefone'].invalid && (formRequisicao.controls['telefone'].touched || formRequisicao.controls['telefone'].dirty)">
+                    <small class="error-message" *ngIf="formRequisicao.controls['telefone'].hasError('minlength')">Esse campo precisa ter no mínimo 11 caracteres.</small>
+                    <small class="error-message" *ngIf="formRequisicao.controls['telefone'].hasError('required')">Esse campo precisa ser preenchido.</small>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><input type="email" class="form-control" placeholder="Digite seu e-mail" formControlName="email"></td>
+                <td>
+                  <div *ngIf="formRequisicao.controls['email'].invalid && (formRequisicao.controls['email'].touched || formRequisicao.controls['email'].dirty)">
+                    <small class="error-message" *ngIf="formRequisicao.controls['email'].hasError('email')">Esse e-mail está inválido.</small>
+                    <small class="error-message" *ngIf="formRequisicao.controls['email'].hasError('required')">Esse campo precisa ser preenchido.</small>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td><textarea class="form-control" maxlength="300" placeholder="Digite a sua mensagem..." formControlName="mensagem"></textarea></td>
+                <td>
+                  <div *ngIf="formRequisicao.controls['mensagem'].invalid && (formRequisicao.controls['mensagem'].touched || formRequisicao.controls['mensagem'].dirty)">
+                    <small class="error-message" *ngIf="formRequisicao.controls['mensagem'].hasError('minlength')">Esse campo precisa ter 20 caracteres.</small>
+                    <small class="error-message" *ngIf="formRequisicao.controls['mensagem'].hasError('required')">Esse campo precisa ser preenchido.</small>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button [disabled]="formRequisicao.invalid" type="submit" class="btn btn-primary">Enviar</button>
+        </form>
+      </p-card>
+    </div>
+  </div>
+</div>
 
-<p-card class="p-card p-fluid contact__container">
-  <form class="contact-form" [formGroup]="formRequisicao" (ngSubmit)="enviarFormulario()">
-    <form class="contact-form" [formGroup]="formRequisicao" (ngSubmit)="enviarFormulario()">
-      <input type="text" placeholder="Digite seu nome" formControlName="nome"
-        [class.valid]="formRequisicao.controls['nome'].valid"
-        [class.invalid]="formRequisicao.controls['nome'].invalid && (formRequisicao.controls['nome'].touched || formRequisicao.controls['nome'].dirty)">
-      <div
-        *ngIf="formRequisicao.controls['nome'].invalid && (formRequisicao.controls['nome'].touched || formRequisicao.controls['nome'].dirty)">
-        <small class="error-message" *ngIf="formRequisicao.controls['nome'].hasError('minlength')">Esse campo precisa
-          ter no mínimo 4 caracteres.</small>
-        <small class="error-message" *ngIf="formRequisicao.controls['nome'].hasError('required')">Esse campo precisa ser
-          preenchido.</small>
-      </div>
+<div class="map-container">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.2692869545076!2d-46.58631732488536!3d-23.737774778679007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce414eddd6bbc5%3A0x201473abf3b97338!2sCentro%20Educacional%20da%20Funda%C3%A7%C3%A3o%20Salvador%20Arena!5e0!3m2!1spt-BR!2sbr!4v1715094274019!5m2!1spt-BR!2sbr" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<p>Estr. dos Alvarengas, 4001 - Alvarenga, São Bernardo do Campo - SP, 09850-550</p>
 
-      <input type="text" placeholder="Digite o assunto" formControlName="assunto"
-        [class.valid]="formRequisicao.controls['assunto'].valid"
-        [class.invalid]="formRequisicao.controls['assunto'].invalid && (formRequisicao.controls['assunto'].touched || formRequisicao.controls['assunto'].dirty)">
-      <div
-        *ngIf="formRequisicao.controls['assunto'].invalid && (formRequisicao.controls['assunto'].touched || formRequisicao.controls['assunto'].dirty)">
-        <small class="error-message" *ngIf="formRequisicao.controls['assunto'].hasError('minlength')">Esse campo precisa
-          ter no mínimo 10 caracteres.</small>
-        <small class="error-message" *ngIf="formRequisicao.controls['assunto'].hasError('required')">Esse campo precisa
-          ser preenchido.</small>
-      </div>
-
-      <input type="tel" placeholder="(00) 0000-0000" mask="(00) 0 0000-0000" formControlName="telefone"
-        [class.valid]="formRequisicao.controls['telefone'].valid"
-        [class.invalid]="formRequisicao.controls['telefone'].invalid && (formRequisicao.controls['telefone'].touched || formRequisicao.controls['telefone'].dirty)">
-      <div
-        *ngIf="formRequisicao.controls['telefone'].invalid && (formRequisicao.controls['telefone'].touched || formRequisicao.controls['telefone'].dirty)">
-        <small class="error-message" *ngIf="formRequisicao.controls['telefone'].hasError('minlength')">Esse campo
-          precisa ter no mínimo 11 caracteres.</small>
-        <small class="error-message" *ngIf="formRequisicao.controls['telefone'].hasError('required')">Esse campo precisa
-          ser preenchido.</small>
-      </div>
-
-      <input type="email" placeholder="Digite seu e-mail" formControlName="email"
-        [class.valid]="formRequisicao.controls['email'].valid"
-        [class.invalid]="formRequisicao.controls['email'].invalid && (formRequisicao.controls['email'].touched || formRequisicao.controls['email'].dirty)">
-      <div
-        *ngIf="formRequisicao.controls['email'].invalid && (formRequisicao.controls['email'].touched || formRequisicao.controls['email'].dirty)">
-        <small class="error-message" *ngIf="formRequisicao.controls['email'].hasError('email')">Esse e-mail está
-          inválido.</small>
-        <small class="error-message" *ngIf="formRequisicao.controls['email'].hasError('required')">Esse campo precisa
-          ser preenchido.</small>
-      </div>
-
-      <textarea maxlength="300" placeholder="Digite a sua mensagem..." formControlName="mensagem"
-        [class.valid]="formRequisicao.controls['mensagem'].valid"
-        [class.invalid]="formRequisicao.controls['mensagem'].invalid && (formRequisicao.controls['mensagem'].touched || formRequisicao.controls['mensagem'].dirty)"></textarea>
-      <div
-        *ngIf="formRequisicao.controls['mensagem'].invalid && (formRequisicao.controls['mensagem'].touched || formRequisicao.controls['mensagem'].dirty)">
-        <small class="error-message" *ngIf="formRequisicao.controls['mensagem'].hasError('minlength')">Esse campo
-          precisa ter 20 caracteres.</small>
-        <small class="error-message" *ngIf="formRequisicao.controls['mensagem'].hasError('required')">Esse campo precisa
-          ser preenchido.</small>
-      </div>
-
-      <button [disabled]="formRequisicao.invalid" type="submit">Enviar</button>
-    </form>
-    <address>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3652.2692869545076!2d-46.58631732488536!3d-23.737774778679007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce414eddd6bbc5%3A0x201473abf3b97338!2sCentro%20Educacional%20da%20Funda%C3%A7%C3%A3o%20Salvador%20Arena!5e0!3m2!1spt-BR!2sbr!4v1715094274019!5m2!1spt-BR!2sbr"
-        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"></iframe>
-      <p>Estr. dos Alvarengas, 4001 - Alvarenga, São Bernardo do Campo - SP, 09850-550</p>
-    </address>
