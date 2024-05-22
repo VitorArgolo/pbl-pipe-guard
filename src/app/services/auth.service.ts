@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class AuthService {
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'https://api-login-pptt.onrender.com';
   private authState = new BehaviorSubject<boolean>(this.isAuthenticated());
   authState$ = this.authState.asObservable();
 
