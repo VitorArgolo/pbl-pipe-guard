@@ -22,7 +22,6 @@
     "@angular/router": "^16.2.0",
     "@material/snackbar": "^14.0.0",
     "@nebular/eva-icons": "^12.0.0",
-    "@nebular/theme": "^12.0.0",
     "@types/axios": "^0.14.0",
     "axios": "^1.6.8",
     "eva-icons": "^1.1.3",
