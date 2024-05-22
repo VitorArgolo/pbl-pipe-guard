@@ -1,0 +1,54 @@
+.body {
+    background-color: #f8f9fa; /* Cor de fundo cinza claro */
+    height: 100vh; /* Altura total da tela */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .login {
+    background-color: #ffffff; /* Cor de fundo branca */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .label-login {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .login form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .login input[type="email"],
+  .login input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da; /* Cor da borda */
+    border-radius: 3px;
+  }
+  
+  .login input[type="email"]:focus,
+  .login input[type="password"]:focus {
+    outline: none; /* Remove o contorno ao focar */
+    border-color: #007bff; /* Cor da borda ao focar */
+    box-shadow: 0 0 3px rgba(0, 123, 255, 0.5); /* Sombra suave ao focar */
+  }
+  
+  .login button {
+    padding: 10px 20px;
+    background-color: #007bff; /* Cor de fundo azul */
+    color: #ffffff; /* Cor do texto branco */
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  .login button:hover {
+    background-color: #0056b3; /* Cor de fundo azul mais escura ao passar o mouse */
+  }
+  

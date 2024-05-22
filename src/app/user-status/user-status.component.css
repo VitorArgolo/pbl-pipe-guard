@@ -1,0 +1,30 @@
+.user-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgb(252, 0, 0); /* Sombra suave */
+  color:#dc3545;
+}
+
+.user-info {
+  font-size: 16px;
+}
+
+.user-name {
+  font-weight: bold;
+}
+
+.logout-button {
+  margin-left: 20px; /* Espaçamento entre a informação do usuário e o botão de logout */
+}
+
+.logout-link {
+  text-decoration: none;
+  color: #dc3545; /* Cor vermelha para o link de logout */
+}
+
+.logout-link:hover {
+  color: #c82333; /* Cor vermelha mais escura ao passar o mouse */
+}

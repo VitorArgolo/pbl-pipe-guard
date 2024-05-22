@@ -24,6 +24,7 @@ import { UserStatusComponent } from './user-status/user-status.component';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { PhoneMaskDirective } from './register/phone-mask.directive';
 import { CardModule } from 'primeng/card';
+
 @NgModule({
   declarations: [
     AppComponent,

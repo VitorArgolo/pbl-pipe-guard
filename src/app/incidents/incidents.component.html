@@ -1,32 +1,32 @@
 <div class="container">
-<div *ngIf="!incidents" class="loading">
-    <div class="spinner"></div>
-</div>
-<div class="widt-min-and-max">
-    <table class="incident-table">
-        <thead>
-            <tr>
-                <th>Título</th>
-                <th>Descrição</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <ng-container *ngIf="incidents.length > 0; else semIncidents">
-                <tr *ngFor="let incident of incidents">
-                    <ng-container *ngIf="incident.leak.toString() === '1'">
-                        <td>{{ incident.title }}</td>
-                        <td>{{ incident.description }}</td>
-                        <td>
-                            <button nbButton routerLink="/incidents/{{incident.id}}">
-                                <i class="fas fa-arrow-right"></i> Mais detalhes
-                            </button>
-                        </td>
-                    </ng-container>
+    <div *ngIf="!incidents" class="loading">
+        <div class="spinner"></div>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Título</th>
+                    <th scope="col">Descrição</th>
+                    <th scope="col">Ações</th>
                 </tr>
-            </ng-container> 
-        </tbody>
-    </table>
-    <ng-template #semIncidents>Não existem incidentes.</ng-template>
-</div>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="incidents && incidents.length > 0; else semIncidents">
+                    <tr *ngFor="let incident of incidents">
+                        <ng-container *ngIf="incident.leak.toString() === '1'">
+                            <td>{{ incident.title }}</td>
+                            <td>{{ incident.description }}</td>
+                            <td>
+                                <button class="btn btn-primary" routerLink="/incidents/{{incident.id}}">
+                                    <i class="fas fa-arrow-right"></i> Mais detalhes
+                                </button>
+                            </td>
+                        </ng-container>
+                    </tr>
+                </ng-container> 
+            </tbody>
+        </table>
+        <ng-template #semIncidents>Não existem incidentes.</ng-template>
+    </div>
 </div>

@@ -1,6 +1,6 @@
 <div class="container">
-    <table class="incident-details">
-        <thead>
+    <table class="table incident-details">
+        <thead class="thead-dark">
             <tr>
                 <th colspan="2">Detalhes do Incidente</th>
             </tr>
@@ -25,7 +25,7 @@
             <tr>
                 <td>Status de execução:</td>
                 <td>
-                    <button class="button" nbButton (click)="adicionarProgresso()">
+                    <button class="btn btn-primary" (click)="adicionarProgresso()">
                         <i class="fas fa-spinner fa-spin"></i> Adicionar em progresso
                     </button>
                 </td>
