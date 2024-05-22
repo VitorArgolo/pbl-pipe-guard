@@ -4,8 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RequisicaoRoutingModule } from './requisicao-routing.module';
 import { RequisicaoComponent } from './requisicao.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputModule, NbIconModule } from '@nebular/theme';
-
+import { CardModule } from 'primeng/card';
 
 @NgModule({
   declarations: [
@@ -15,12 +14,7 @@ import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputMod
     CommonModule,
     RequisicaoRoutingModule,
     ReactiveFormsModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
-    NbButtonModule,
-    NbInputModule,
-    NbIconModule,
-    NbCardModule
+    CardModule
   ]
 })
 export class RequisicaoModule { }

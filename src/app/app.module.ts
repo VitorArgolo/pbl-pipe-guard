@@ -9,7 +9,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { NaoEncontradoComponent } from './nao-encontrado/nao-encontrado.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
-import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputModule, NbIconModule, NbSidebarModule, NbSearchModule  } from '@nebular/theme';
 
 import { HttpClientModule } from '@angular/common/http';
 import { SensoresComponent } from './sensores/sensores.component';
@@ -24,7 +23,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserStatusComponent } from './user-status/user-status.component';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { PhoneMaskDirective } from './register/phone-mask.directive';
-
+import { CardModule } from 'primeng/card';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,17 +44,10 @@ import { PhoneMaskDirective } from './register/phone-mask.directive';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
-    NbThemeModule.forRoot({ name: 'default' }),
-    NbLayoutModule,
-    NbButtonModule,
-    NbInputModule,
-    NbIconModule,
-    NbCardModule,
-    NbSidebarModule,
-    NbSearchModule,
     LoginRoutingModule,
     RegisterRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    CardModule
   ],
   providers: [ 
   {  provide: HTTP_INTERCEPTORS,
