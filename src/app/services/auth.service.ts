@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, BehaviorSubject, timer, Subscription } from 'rxjs';
-import { tap, debounce } from 'rxjs/operators';
+import { Observable, BehaviorSubject, timer, Subscription, throwError } from 'rxjs';
+import { Router } from '@angular/router';
+import { tap, catchError, debounce } from 'rxjs/operators';
 import Swal from 'sweetalert2';
 
 @Injectable({
@@ -11,11 +12,13 @@ export class AuthService {
   private apiUrl = 'https://api-login-pptt.onrender.com';
   private authState = new BehaviorSubject<boolean>(this.isAuthenticated());
   authState$ = this.authState.asObservable();
+  private userSubject = new BehaviorSubject<any>(null);
+  user$ = this.userSubject.asObservable();
   private inactivityTimer: Subscription | undefined;
 
-  constructor(private http: HttpClient) {
-    // Inicia o temporizador de inatividade
+  constructor(private http: HttpClient, private router: Router) {
     this.initInactivityTimer();
+    this.loadUserDetails();
   }
 
   isAuthenticated(): boolean {
@@ -29,8 +32,15 @@ export class AuthService {
         localStorage.setItem('token', response.token);
         this.authState.next(true);
         this.showWelcomeAlert();
-        // Reinicia o temporizador de inatividade após o login bem-sucedido
         this.resetInactivityTimer();
+        this.loadUserDetails();
+        this.router.navigate(['/incidents']);
+      }),
+      catchError(error => {
+        // Sinaliza que houve um erro de login
+        localStorage.setItem('loginError', 'true');
+        this.router.navigate(['/login']);
+        return throwError(error);
       })
     );
   }
@@ -41,12 +51,10 @@ export class AuthService {
   }
 
   logout(): Observable<any> {
-    // Remove o token e os detalhes do usuário do armazenamento local
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    // Define o estado de autenticação como falso
     this.authState.next(false);
-    // Retorna um observable vazio ou de uma operação assíncrona, se necessário
+    this.userSubject.next(null);
     return new Observable(observer => {
       observer.next(true);
       observer.complete();
@@ -54,17 +62,24 @@ export class AuthService {
   }
 
   getUserDetails(): Observable<any> {
+    return this.user$;
+  }
+
+  private loadUserDetails(): void {
     const token = localStorage.getItem('token');
     if (!token) {
-      return new Observable(observer => {
-        observer.error('No token found');
-      });
+      this.userSubject.next(null);
+      return;
     }
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-    return this.http.get(`${this.apiUrl}/me`, { headers }).pipe(
+    this.http.get(`${this.apiUrl}/me`, { headers }).pipe(
       tap((user: any) => {
         localStorage.setItem('user', JSON.stringify(user));
+        this.userSubject.next(user);
       })
+    ).subscribe(
+      user => this.userSubject.next(user),
+      error => this.userSubject.next(null)
     );
   }
 
@@ -76,26 +91,32 @@ export class AuthService {
     });
   }
 
-  // Inicia o temporizador de inatividade
+  showErrorAlert(title: string, text: string): void {
+    Swal.fire({
+      title: title,
+      text: text,
+      icon: 'error',
+      confirmButtonText: 'OK',
+      allowOutsideClick: false,
+      allowEscapeKey: false
+    });
+  }
+
   private initInactivityTimer(): void {
-    const inactivityDuration = 15 * 60 * 1000; // 15 minutos em milissegundos
+    const inactivityDuration = 15 * 60 * 1000;
     this.inactivityTimer = timer(inactivityDuration).pipe(
       debounce(() => timer(inactivityDuration))
     ).subscribe(() => {
-      // Chama o método de logout após o tempo de inatividade
       this.logout().subscribe(() => {
         console.log('Sessão expirada, usuário desconectado.');
       });
     });
   }
 
-  // Reinicia o temporizador de inatividade
   private resetInactivityTimer(): void {
-    // Cancela a subscrição anterior do temporizador
     if (this.inactivityTimer !== undefined) {
       this.inactivityTimer.unsubscribe();
     }
-    // Inicia o temporizador novamente
     this.initInactivityTimer();
   }
 }
