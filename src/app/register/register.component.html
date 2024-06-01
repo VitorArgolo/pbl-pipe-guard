@@ -4,7 +4,6 @@
       <h2 class="label-signup">Sign up</h2>
       <form [formGroup]="signupForm" (ngSubmit)="register()">
         <div>
-          <label>Email:</label>
           <input type="email" class="form-control" formControlName="email" placeholder="Email">
           <div *ngIf="email?.invalid && email?.touched">
             <small *ngIf="email?.errors?.['required']" class="text-danger">Email é obrigatório</small>
@@ -12,7 +11,6 @@
           </div>
         </div>
         <div>
-          <label>Senha:</label>
           <input type="password" class="form-control" formControlName="password" placeholder="Senha">
           <div *ngIf="password?.invalid && password?.touched">
             <small *ngIf="password?.errors?.['required']" class="text-danger">Senha é obrigatória</small>
@@ -25,14 +23,12 @@
           </div>
         </div>
         <div>
-          <label>Nome:</label>
           <input type="text" class="form-control" formControlName="name" placeholder="Nome">
           <div *ngIf="name?.invalid && name?.touched">
             <small *ngIf="name?.errors?.['required']" class="text-danger">Nome é obrigatório</small>
           </div>
         </div>
         <div>
-          <label>Telefone:</label>
           <input type="text" class="form-control" formControlName="phone" placeholder="(00) 0000-0000" appPhoneMask>
           <div *ngIf="signupForm.get('phone')?.invalid && signupForm.get('phone')?.touched">
             <small *ngIf="signupForm.get('phone')?.errors?.['required']" class="text-danger">Telefone é
