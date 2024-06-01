@@ -24,6 +24,7 @@ import { UserStatusComponent } from './user-status/user-status.component';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { PhoneMaskDirective } from './register/phone-mask.directive';
 import { CardModule } from 'primeng/card';
+import { MonitoringListComponent } from './monitoring-list/monitoring-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { CardModule } from 'primeng/card';
     RegisterComponent,
     LoginComponent,
     UserStatusComponent,
-    PhoneMaskDirective
+    PhoneMaskDirective,
+    MonitoringListComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import { CardModule } from 'primeng/card';
     LoginRoutingModule,
     RegisterRoutingModule,
     ReactiveFormsModule,
-    CardModule
+    CardModule,
   ],
   providers: [ 
   {  provide: HTTP_INTERCEPTORS,

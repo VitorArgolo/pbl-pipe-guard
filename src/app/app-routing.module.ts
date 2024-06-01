@@ -11,6 +11,7 @@ const routes: Routes = [
   { path: "", redirectTo: "incidents", pathMatch: "full" },
   { path: 'progresso', canActivate: [AuthGuard], loadChildren: () => import('./progresso/progresso.module').then(m => m.ProgressoModule) },
   { path: 'requisicao', loadChildren: () => import('./requisicao/requisicao.module').then(m => m.RequisicaoModule) },
+  { path: 'monitoring', canActivate: [AuthGuard], loadChildren: () => import('./monitoring-list/monitoring-list.module').then(m => m.MonitoringListModule) },
   { path: 'geofones', canActivate: [AuthGuard], loadChildren: () => import('./sensores/sensores.module').then(m => m.SensoresModule) },
   { path: 'status', canActivate: [AuthGuard], loadChildren: () => import('./status-servidor-api/status-servidor-api.module').then(m => m.StatusServidorApiModule) },
   { path: "**", component: NaoEncontradoComponent }];
