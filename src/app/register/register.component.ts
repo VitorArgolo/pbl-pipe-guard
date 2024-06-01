@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PhoneMaskDirective } from './phone-mask.directive';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -22,7 +23,7 @@ export class RegisterComponent {
         Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[ -~]{8,20}$/
       )]],
       name: ['', Validators.required],
-      phone: ['', Validators.required] // Removemos a validação de pattern, pois a máscara fará isso
+      phone: ['', Validators.required] 
     });
   }
 
@@ -37,11 +38,22 @@ export class RegisterComponent {
 
     this.authService.register(email, password, name, phone).subscribe(response => {
       console.log('Registro bem-sucedido:', response);
-      // Redirecionar para a página de login ou outra ação após o registro bem-sucedido
+
+      Swal.fire({
+        title: 'Registro bem-sucedido!',
+        text: 'Você foi registrado com sucesso.',
+        icon: 'success',
+        confirmButtonText: 'OK'
+      });
     }, error => {
       console.error('Erro de registro:', error);
       this.errorMessage = error.error.message || 'Ocorreu um erro durante o registro.';
-      // Exibir mensagem de erro para o usuário
+      Swal.fire({
+        title: 'Erro de registro',
+        text: this.errorMessage,
+        icon: 'error',
+        confirmButtonText: 'OK'
+      });
     });
   }
 
