@@ -6,17 +6,23 @@
             <div class="spinner"></div>
         </div>
         <ng-container class="table-responsive">
-            <ng-container *ngIf="incidents && incidents.length > 0; else semIncidents">
+            <ng-container *ngIf="filteredIncidents && filteredIncidents.length > 0; else semIncidents">
                 <table class="table">
                     <thead class="thead-dark">
                         <tr>
-                            <th scope="col">Título</th>
-                            <th scope="col">Descrição</th>
+                            <th scope="col">
+                                Título
+                                <input type="text" [(ngModel)]="filters.title" (input)="applyFilters()" class="form-control form-control-sm" placeholder="Filtrar por título">
+                            </th>
+                            <th scope="col">
+                                Descrição
+                                <input type="text" [(ngModel)]="filters.description" (input)="applyFilters()" class="form-control form-control-sm" placeholder="Filtrar por descrição">
+                            </th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let incident of incidents | paginate: { itemsPerPage: 10, currentPage: currentPage }">
+                        <tr *ngFor="let incident of paginatedIncidents">
                             <ng-container *ngIf="incident.leak.toString() === '1'">
                                 <td>{{ incident.title }}</td>
                                 <td>{{ incident.description }}</td>
