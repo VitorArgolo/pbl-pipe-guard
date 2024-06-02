@@ -1,15 +1,24 @@
 <div class="body">
-
-<div *ngIf="logs && logs.length > 0">
+  <div *ngIf="logs && logs.length > 0">
     <h2>Lista de Monitoramento</h2>
-    <ul>
-      <li *ngFor="let log of logs">
-        <span>{{ log.message }}</span> - <span>{{ log.timestamp | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
-      </li>
-    </ul>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Mensagem</th>
+          <th>Timestamp</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let log of logs">
+          <td>{{ log.message }}</td>
+          <td [ngClass]="getLogClass(log.method)">{{ log.method }}</td>
+          <td>{{ log.timestamp | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+        </tr>
+      </tbody>
+      
+    </table>
   </div>
   <div *ngIf="logs && logs.length === 0">
     <p>Nenhum registro de monitoramento encontrado.</p>
   </div>
 </div>
-  

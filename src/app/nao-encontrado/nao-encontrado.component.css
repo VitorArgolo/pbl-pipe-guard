@@ -1,0 +1,15 @@
+.container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.container i {
+    font-size: 50px;
+    color: #ff0000; /* Cor do ícone */
+}
+
+.container h2 {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #333; /* Cor do texto */
+}
