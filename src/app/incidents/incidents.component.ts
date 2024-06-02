@@ -1,43 +1,58 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IIncident, fillIncidents } from '../incidents'; // Removendo incidentsPromise daqui
+import { IIncident, fillIncidents } from '../incidents';
 import { IncidentsService } from '../incidents.service';
-import { Pipe, PipeTransform } from '@angular/core';
-import { incidentsPromise, IIncidentsProgresso } from '../incidents';
-incidentsPromise.then(incidents => incidents);
 
 @Component({
   selector: 'app-incidents',
   templateUrl: './incidents.component.html',
   styleUrls: ['./incidents.component.css']
 })
-
 export class IncidentsComponent implements OnInit {
-  incidents: IIncident[] = []; // Inicializando como uma array vazia
+  incidents: IIncident[] = [];
+  filteredIncidents: IIncident[] = [];
+  paginatedIncidents: IIncident[] = [];
   currentPage: number = 1;
   itemsPerPage: number = 10;
+  filters: { title: string, description: string } = { title: '', description: '' };
 
   constructor(
     private incidentsService: IncidentsService,
     private route: ActivatedRoute
   ) { }
 
-  ngOnInit(): void {
-    fillIncidents().then(incidents => { // Esperando pela resolução da Promise
-      this.incidents = incidents; // Atribuindo os incidentes preenchidos
-    }).catch(error => {
+  async ngOnInit() {
+    try {
+      this.incidents = await fillIncidents();
+      this.route.queryParamMap.subscribe(params => {
+        const title = params.get("title")?.toLowerCase();
+        if (title) {
+          this.filters.title = title;
+        }
+        this.applyFilters();
+      });
+    } catch (error) {
       console.error('Erro ao preencher incidentes:', error);
-    });
+    }
+  }
 
-    this.route.queryParamMap.subscribe(params => {
-      const title = params.get("title")?.toLowerCase();
+  applyFilters() {
+    this.filteredIncidents = this.incidents.filter(incident =>
+      incident.title.toLowerCase().includes(this.filters.title.toLowerCase()) &&
+      incident.description.toLowerCase().includes(this.filters.description.toLowerCase())
+    );
+    this.paginateIncidents();
+  }
 
-      if (title) {
-        this.incidents = this.incidents.filter(incident => incident.title.toLowerCase().includes(title));
-        return;
-      }
-      this.incidents = this.incidentsService.getAll();
-    });
+  paginateIncidents() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.paginatedIncidents = this.filteredIncidents.slice(startIndex, endIndex);
+  }
+
+  onPageChange(page: number) {
+    this.currentPage = page;
+    this.paginateIncidents();
   }
 
   getHeaderColor(severity: string): string {
@@ -62,7 +77,4 @@ export class IncidentsComponent implements OnInit {
   getBorderColor(severity: string): string {
     return this.getHeaderColor(severity);
   }
-
-
 }
-
