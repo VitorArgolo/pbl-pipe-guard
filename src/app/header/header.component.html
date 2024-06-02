@@ -11,22 +11,26 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" routerLink="incidents"><i class="fa-solid fa-list"></i> Listar Incidentes</a>
+                <a class="nav-link" routerLink="incidents"><i class="bi bi-list"></i> Incidentes</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="progresso"><i class="fa-solid fa-sync"></i> Em Progresso <span>{{progressoService.obtemProgresso().length}}</span></a>
+                <a class="nav-link" routerLink="progresso"><i class="bi bi-arrow-repeat"></i> Progresso <span>{{progressoService.obtemProgresso().length}}</span></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" routerLink="geofones"><i class="bi bi-gear"></i> Teste Sensores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="requisicao"><i class="fa-solid fa-address-book"></i> Requisições Manuais e Contatos</a>
+                <a class="nav-link" routerLink="status"><i class="bi bi-check-circle"></i> Servidor e API</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="geofones"><i class="fas fa-cogs"></i> Gestão de Sensores</a>
+                <a class="nav-link" routerLink="monitoring"><i class="bi bi-check-circle"></i> Monitoramento</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="status"><i class="fa-solid fa-check-circle"></i> Status de Servidor e API</a>
+                <a class="nav-link" routerLink="about"><i class="bi bi-info-circle"></i> Sobre Nós</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="monitoring"><i class="fa-solid fa-check-circle"></i> Logs de monitoramento</a>
+                <a class="nav-link" routerLink="requisicao"><i class="bi bi-book"></i> Contatos</a>
             </li>
             <li class="nav-item">
                 <app-user-status></app-user-status>
@@ -36,7 +40,7 @@
         <!-- Barra de Pesquisa -->
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar..." aria-label="Pesquisar">
-            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="pi pi-search"></i></button>
+            <button class="btn btn-outline-light my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
         </form>
     </div>
 </header>
