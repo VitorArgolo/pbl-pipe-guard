@@ -10,7 +10,7 @@ import {
   updateIncident,
   loginAndGetToken
 } from '../incidents';
-
+ 
 @Component({
   selector: 'app-sensores',
   templateUrl: './sensores.component.html',

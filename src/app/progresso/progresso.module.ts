@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProgressoRoutingModule } from './progresso-routing.module';
 import { ProgressoComponent } from './progresso.component';
 import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ProgressoRoutingModule,
-    FormsModule
+    FormsModule,
+    NgxPaginationModule
   ]
 })
 export class ProgressoModule { }

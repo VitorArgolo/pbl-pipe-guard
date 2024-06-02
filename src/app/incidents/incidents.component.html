@@ -3,18 +3,18 @@
         <div *ngIf="!incidents" class="loading">
             <div class="spinner"></div>
         </div>
-        <div class="table-responsive">
-            <table class="table">
-                <thead class="thead-dark">
-                    <tr>
-                        <th scope="col">Título</th>
-                        <th scope="col">Descrição</th>
-                        <th scope="col">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngIf="incidents && incidents.length > 0; else semIncidents">
-                        <tr *ngFor="let incident of incidents">
+        <ng-container class="table-responsive">
+            <ng-container *ngIf="incidents && incidents.length > 0; else semIncidents">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Título</th>
+                            <th scope="col">Descrição</th>
+                            <th scope="col">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let incident of incidents | paginate: { itemsPerPage: 10, currentPage: currentPage }">
                             <ng-container *ngIf="incident.leak.toString() === '1'">
                                 <td>{{ incident.title }}</td>
                                 <td>{{ incident.description }}</td>
@@ -25,10 +25,11 @@
                                 </td>
                             </ng-container>
                         </tr>
-                    </ng-container>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </ng-container>
+            <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
             <ng-template #semIncidents>Não existem incidentes.</ng-template>
-        </div>
+        </ng-container>
     </div>
 </div>

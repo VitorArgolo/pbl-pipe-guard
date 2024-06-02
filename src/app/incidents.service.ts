@@ -31,5 +31,27 @@ export class IncidentsService {
     return this.incidents.find(incident => incident.id === incidentId)
   }  
 
-  
+  async addIncidentById(incidentId: number): Promise<void> {
+    try {
+      const incident = await this.fetchIncidentById(incidentId);
+      this.incidents.push(incident);
+    } catch (error) {
+      console.error('Erro ao adicionar incidente:', error);
+      throw error; // Rejeite a Promise para que o erro seja tratado pela função chamadora
+    }
+  }
+
+  private async fetchIncidentById(incidentId: number): Promise<IIncident> {
+    // Simule uma chamada assíncrona à API para buscar os detalhes do incidente pelo ID
+    return new Promise<IIncident>((resolve, reject) => {
+      setTimeout(() => {
+        const incident = this.incidents.find(incident => incident.id === incidentId);
+        if (incident) {
+          resolve(incident);
+        } else {
+          reject(new Error('Incidente não encontrado'));
+        }
+      }, 1000); // Simula um atraso de 1 segundo na chamada à API
+    });
+  }
 }
