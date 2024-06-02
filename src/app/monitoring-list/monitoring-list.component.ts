@@ -9,7 +9,7 @@ import { MonitoringService } from '../monitoring.service';
 export class MonitoringListComponent implements OnInit {
   logs: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 5;
 
 
   constructor(private monitoringService: MonitoringService) { }
