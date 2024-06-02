@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProgressoService } from 'src/app/progresso.service';
 import { NotificacaoService } from 'src/app/notificacao.service';
-import { IIncident, IIncidentsProgresso } from 'src/app/incidents'; // Removido incidentsPromise e incidentsPromise.then(incidents => incidents)
+import { IIncident, IIncidentsProgresso } from 'src/app/incidents'; 
 import { IncidentsService } from 'src/app/incidents.service';
+import { AuthService } from '../../services/auth.service';
+import { updateIncident, loginAndGetToken } from 'src/app/incidents';
 
 @Component({
   selector: 'app-detalhes-incident',
@@ -17,7 +19,8 @@ export class DetalhesIncidentComponent implements OnInit {
   constructor(
     private incidentsService: IncidentsService,
     private route: ActivatedRoute,
-    private progressoService: ProgressoService
+    private progressoService: ProgressoService,
+    private authService: AuthService
   ){}
 
   ngOnInit(): void {
@@ -26,11 +29,30 @@ export class DetalhesIncidentComponent implements OnInit {
     this.incident = this.incidentsService.getOne(incidentId);
   }
 
-  adicionarProgresso(){
+  adicionarProgresso() {
     if (!this.incident) {
-      // Verifica se incident é undefined antes de prosseguir
       return;
     }
+  
+    // Obtém o usuário logado do AuthService
+    this.authService.getUserDetails().subscribe(user => {
+      if (user) {
+        const incidentProgresso: IIncidentsProgresso = {
+          ...this.incident,
+          quantidade: this.quantidade,
+          IdResolvedor: user.id, // Usa o ID do usuário logado
+          NomeResolvedor: user.name // Usa o nome do usuário logado
+        };
+  
+        // Obtém o token de autenticação
+        loginAndGetToken().then(token => {
+          // Atualiza o incidente na API com os novos dados e o token
+          this.updateIncident(token, this.incident.id, incidentProgresso);
+        }).catch(error => {
+          console.error('Erro ao obter token de autenticação:', error);
+        });
+      }
+    });
 
     const incidentProgresso: IIncidentsProgresso = {
       ...this.incident, // Corrigido para usar spread operator corretamente
@@ -39,4 +61,19 @@ export class DetalhesIncidentComponent implements OnInit {
     
     this.progressoService.adicionarProgresso(incidentProgresso);
   }
+  
+  // Função para atualizar o incidente na API
+  updateIncident(token: string, incidentId: number, incidentProgresso: IIncidentsProgresso) {
+    updateIncident(token, incidentId, incidentProgresso).then(updatedIncident => {
+      console.log('Incidente atualizado com sucesso:', updatedIncident);
+      // Atualiza o incidente localmente
+      this.incident = updatedIncident;
+    }).catch(error => {
+      console.error('Erro ao atualizar incidente:', error);
+    });
+  }
+  
+
+
+ 
 }

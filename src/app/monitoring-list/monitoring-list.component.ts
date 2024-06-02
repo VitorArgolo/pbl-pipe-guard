@@ -1,4 +1,3 @@
-// monitoring-list.component.ts
 import { Component, OnInit } from '@angular/core';
 import { MonitoringService } from '../monitoring.service';
 
@@ -9,6 +8,9 @@ import { MonitoringService } from '../monitoring.service';
 })
 export class MonitoringListComponent implements OnInit {
   logs: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+
 
   constructor(private monitoringService: MonitoringService) { }
 
@@ -26,25 +28,5 @@ export class MonitoringListComponent implements OnInit {
       }
     );
   }
-  getLogClass(method: string): string {
-    
-    switch (method) {
-      case 'GET':
-        return 'get-log';
-      case 'POST':
-        return 'post-log';
-      case 'PUT':
-        return 'put-log';
-      case 'DELETE':
-        return 'delete-log';
-      default:
-        return '';
-    }
-  }
-  getHttpMethod(message: string): string {
-    const regex = /(GET|POST|PUT|DELETE)/i; // Expressão regular para encontrar o método HTTP
-    const match = message.match(regex);
-    return match ? match[0].toUpperCase() : ''; // Retorna o método encontrado em maiúsculas ou uma string vazia se não for encontrado
-  }
-  
+
 }

@@ -11,10 +11,12 @@ incidentsPromise.then(incidents =>incidents);
   templateUrl: './incidents.component.html',
   styleUrls: ['./incidents.component.css']
 })
-
+ 
 export class IncidentsComponent implements OnInit {
   incidents: IIncident[] = []; // Inicializando como uma array vazia
-
+  currentPage: number = 1;
+  itemsPerPage: number = 10;
+  
   constructor(
     private incidentsService: IncidentsService, 
     private route: ActivatedRoute

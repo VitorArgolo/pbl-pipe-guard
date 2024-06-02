@@ -10,6 +10,11 @@ import { StatusServidorApiService } from '../status-servidor-api.service';
 export class StatusServidorApiComponent implements OnInit {
   token: string ='';
   serverInfo: any;
+  serverStatus: string = '';
+  cpuUsage: number = 0;
+  totalMemory: number = 0;
+  freeMemory: number = 0;
+  listedModels: Set<string> = new Set<string>();
 
   constructor(private statusServidorApiService: StatusServidorApiService) { }
 
@@ -18,6 +23,10 @@ export class StatusServidorApiComponent implements OnInit {
     setInterval(() => {
       this.getServerInfo();
     }, 5000); // Atualiza os dados a cada 5 segundos
+    this.getStatus();
+    this.getCPUUsage();
+    this.getMemoryUsage();
+    
   }
 
   login(): void {
@@ -69,5 +78,36 @@ export class StatusServidorApiComponent implements OnInit {
     const seconds = Math.floor((time % (60 * 1000)) / 1000);
 
     return `${hours}h ${minutes}m ${seconds}s`;
+  }
+
+  getStatus(): void {
+    this.statusServidorApiService.getStatusServidor()
+      .subscribe((data: any) => {
+        this.serverStatus = data.serverStatus;
+      });
+  }
+
+  getCPUUsage(): void {
+    this.statusServidorApiService.getCPUUsage()
+      .subscribe((data: any) => {
+        this.cpuUsage = data.cpuUsage;
+      });
+  }
+
+  getMemoryUsage(): void {
+    this.statusServidorApiService.getMemoryUsage()
+      .subscribe((data: any) => {
+        this.totalMemory = data.totalMemory;
+        this.freeMemory = data.freeMemory;
+      });
+  }
+
+  isModelRepeated(model: string): boolean {
+    if (this.listedModels.has(model)) {
+      return true;
+    } else {
+      this.listedModels.add(model);
+      return false;
+    }
   }
 }

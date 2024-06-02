@@ -6,6 +6,8 @@ import { IncidentsComponent } from './incidents.component';
 import { FormsModule } from '@angular/forms';
 import { DetalhesIncidentComponent } from './detalhes-incident/detalhes-incident.component';
 import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputModule, NbIconModule } from '@nebular/theme';
+import { NgxPaginationModule } from 'ngx-pagination';
+
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { NbThemeModule, NbLayoutModule, NbButtonModule, NbCardModule, NbInputMod
     NbButtonModule,
     NbInputModule,
     NbIconModule,
-    NbCardModule
+    NbCardModule,
+    NgxPaginationModule
+
   ]
 })
 export class IncidentsModule { }

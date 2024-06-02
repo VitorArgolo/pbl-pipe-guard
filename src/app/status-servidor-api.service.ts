@@ -27,4 +27,15 @@ export class StatusServidorApiService {
         catchError((error: any) => throwError(error))
       );
   }
+  getStatusServidor(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/status`);
+  }
+
+  getCPUUsage(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/cpu`);
+  }
+
+  getMemoryUsage(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/memory`);
+  }
 }

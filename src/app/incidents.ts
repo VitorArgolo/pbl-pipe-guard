@@ -6,6 +6,8 @@ export interface IIncident {
     description: string;
     leak: boolean;
     severity: string;
+    IdResolvedor: string;
+    NomeResolvedor: string;
 }
 
 
@@ -79,5 +81,8 @@ export async function deleteIncident(token: string, incidentId: number) {
         throw new Error('Erro ao deletar incidente');
     }
 }
+
+
+
 // Exportando a Promise que preenche os incidentes
 export const incidentsPromise = fillIncidents();

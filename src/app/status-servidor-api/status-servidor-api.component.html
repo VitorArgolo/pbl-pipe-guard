@@ -1,32 +1,26 @@
 <div class="body">
-    <div class="dashboard-container">
-        <div *ngIf="!serverInfo" class="loading">
-            <div class="spinner"></div>
+    <!-- status-servidor.component.html -->
+    <div class="container">
+        <div class="card">
+            <h2>Server Status</h2>
+            <p>{{ serverStatus }}</p>
         </div>
-        <div *ngIf="serverInfo" class="dashboard">
-            <div class="card">
-                <h2>Informações do Servidor</h2>
-                <p><strong>Hostname:</strong> {{ serverInfo.hostname }}</p>
-                <p><strong>Uptime:</strong> {{ formatUptime(serverInfo.uptime) }}</p>
-                <p><strong>Total Memory:</strong> {{ formatMemory(serverInfo.totalMemory) }}</p>
-                <p><strong>Free Memory:</strong> {{ formatMemory(serverInfo.freeMemory) }}</p>
-                <p><strong>Load Average:</strong> {{ formatLoadAverage(serverInfo.loadAverage) }}</p>
-            </div>
-            <div class="card">
-                <h2>Informações das CPUs</h2>
-                <div *ngFor="let cpu of serverInfo.cpus" class="cpu">
+        <div class="card">
+            <h2>CPU Usage</h2>
+            <ng-container *ngIf="serverInfo && serverInfo.cpus">
+                <div *ngFor="let cpu of serverInfo.cpus" class="cpu" [ngIf]="!isModelRepeated(cpu.model)">
                     <p><strong>Model:</strong> {{ cpu.model }}</p>
-                    <p><strong>Speed:</strong> {{ cpu.speed }} GHz</p>
-                    <p><strong>Times:</strong></p>
-                    <ul>
-                        <li><strong>User:</strong> {{ formatTime(cpu.times.user) }}</li>
-                        <li><strong>Nice:</strong> {{ formatTime(cpu.times.nice) }}</li>
-                        <li><strong>Sys:</strong> {{ formatTime(cpu.times.sys) }}</li>
-                        <li><strong>Idle:</strong> {{ formatTime(cpu.times.idle) }}</li>
-                        <li><strong>IRQ:</strong> {{ formatTime(cpu.times.irq) }}</li>
-                    </ul>
                 </div>
-            </div>
+            </ng-container>
+            <p>{{ (cpuUsage) }} GB</p>
+        </div>
+
+        <div class="card">
+            <h2>Memory Usage</h2>
+            <p>Total Memory: {{ formatMemory(totalMemory) }} </p>
+            <p>Free Memory: {{ formatMemory(freeMemory) }}</p>
         </div>
     </div>
+
+
 </div>

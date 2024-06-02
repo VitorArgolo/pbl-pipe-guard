@@ -25,6 +25,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { PhoneMaskDirective } from './register/phone-mask.directive';
 import { CardModule } from 'primeng/card';
 import { MonitoringListComponent } from './monitoring-list/monitoring-list.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { MonitoringListComponent } from './monitoring-list/monitoring-list.compo
     RegisterRoutingModule,
     ReactiveFormsModule,
     CardModule,
+    NgxPaginationModule,
   ],
   providers: [ 
   {  provide: HTTP_INTERCEPTORS,
