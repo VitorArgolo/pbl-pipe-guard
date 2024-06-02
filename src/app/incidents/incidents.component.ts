@@ -4,23 +4,23 @@ import { IIncident, fillIncidents } from '../incidents'; // Removendo incidentsP
 import { IncidentsService } from '../incidents.service';
 import { Pipe, PipeTransform } from '@angular/core';
 import { incidentsPromise, IIncidentsProgresso } from '../incidents';
-incidentsPromise.then(incidents =>incidents);
+incidentsPromise.then(incidents => incidents);
 
 @Component({
   selector: 'app-incidents',
   templateUrl: './incidents.component.html',
   styleUrls: ['./incidents.component.css']
 })
- 
+
 export class IncidentsComponent implements OnInit {
   incidents: IIncident[] = []; // Inicializando como uma array vazia
   currentPage: number = 1;
   itemsPerPage: number = 10;
-  
+
   constructor(
-    private incidentsService: IncidentsService, 
+    private incidentsService: IncidentsService,
     private route: ActivatedRoute
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     fillIncidents().then(incidents => { // Esperando pela resolução da Promise
@@ -34,31 +34,35 @@ export class IncidentsComponent implements OnInit {
 
       if (title) {
         this.incidents = this.incidents.filter(incident => incident.title.toLowerCase().includes(title));
-        return; 
+        return;
       }
-      this.incidents = this.incidentsService.getAll(); 
+      this.incidents = this.incidentsService.getAll();
     });
   }
+
   getHeaderColor(severity: string): string {
     switch (severity) {
-        case 'Baixo':
-            return '#3e6b36'; 
-        case 'Médio':
-            return '#d9a602'; 
-        case 'Alto':
-            return '#ff8c00'; 
-        case 'Crítico':
-            return '#ff3333'; 
-        default:
-            return '#1b4f7f'; 
+      case 'Baixo':
+        return '#3e6b36';
+      case 'Médio':
+        return '#d9a602';
+      case 'Alto':
+        return '#ff8c00';
+      case 'Crítico':
+        return '#ff3333';
+      default:
+        return '#1b4f7f';
     }
-}
+  }
 
-getTextColor(severity: string): string {
+  getTextColor(severity: string): string {
     return '#fff'; // Branco por padrão
+  }
+
+  getBorderColor(severity: string): string {
+    return this.getHeaderColor(severity);
+  }
+
+
 }
 
-getBorderColor(severity: string): string {
-    return this.getHeaderColor(severity);
-}
-}

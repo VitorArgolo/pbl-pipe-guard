@@ -41,6 +41,25 @@
     margin: 0;
 }
 
+@media (max-width: 576px) {
+  /* Reduz a fonte do cabeçalho */
+  h1.navbar-brand {
+    font-size: 20px;
+  }
+  
+  /* Ajusta o espaçamento entre os itens do menu */
+  .navbar-nav .nav-item {
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Reduz ainda mais a fonte do cabeçalho */
+  h1.navbar-brand {
+    font-size: 18px;
+  }
+}
+
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
