@@ -1,35 +1,38 @@
-<div class="container">
-    <table class="table incident-details">
-        <thead class="thead-dark">
-            <tr>
-                <th colspan="2">Detalhes do Incidente</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Título:</td>
-                <td>{{incident?.title}}</td>
-            </tr>
-            <tr>
-                <td>Descrição:</td>
-                <td>{{incident?.description}}</td> 
-            </tr>
-            <tr>
-                <td>Vazamento:</td>
-                <td>{{ incident?.leak === '0' ? "não" : "sim" }}</td>
-            </tr>
-            <tr *ngIf="incident?.leak">
-                <td>Nível de Gravidade:</td>
-                <td>{{incident?.severity}}</td>
-            </tr>
-            <tr>
-                <td>Status de execução:</td>
-                <td>
-                    <button class="btn btn-primary" (click)="adicionarProgresso()">
-                        <i class="fas fa-spinner fa-spin"></i> Adicionar em progresso
-                    </button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="body">
+
+    <div class="container">
+        <table class="table incident-details">
+            <thead class="thead-dark">
+                <tr>
+                    <th colspan="2">Detalhes do Incidente</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Título:</td>
+                    <td>{{incident?.title}}</td>
+                </tr>
+                <tr>
+                    <td>Descrição:</td>
+                    <td>{{incident?.description}}</td>
+                </tr>
+                <tr>
+                    <td>Vazamento:</td>
+                    <td>{{ incident?.leak === '0' ? "não" : "sim" }}</td>
+                </tr>
+                <tr *ngIf="incident?.leak">
+                    <td>Nível de Gravidade:</td>
+                    <td>{{incident?.severity}}</td>
+                </tr>
+                <tr>
+                    <td>Status de execução:</td>
+                    <td>
+                        <button class="btn btn-primary" (click)="adicionarProgresso()">
+                            <i class="fas fa-spinner fa-spin"></i> Adicionar em progresso
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

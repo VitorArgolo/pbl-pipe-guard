@@ -1,30 +1,31 @@
-<!-- status-servidor-api.component.html -->
-<div class="dashboard-container">
-    <div *ngIf="!serverInfo" class="loading">
-        <div class="spinner"></div>
-    </div>
-    <div *ngIf="serverInfo" class="dashboard">
-        <div class="card">
-            <h2>Informações do Servidor</h2>
-            <p><strong>Hostname:</strong> {{ serverInfo.hostname }}</p>
-            <p><strong>Uptime:</strong> {{ formatUptime(serverInfo.uptime) }}</p>
-            <p><strong>Total Memory:</strong> {{ formatMemory(serverInfo.totalMemory) }}</p>
-            <p><strong>Free Memory:</strong> {{ formatMemory(serverInfo.freeMemory) }}</p>
-            <p><strong>Load Average:</strong> {{ formatLoadAverage(serverInfo.loadAverage) }}</p>
+<div class="body">
+    <div class="dashboard-container">
+        <div *ngIf="!serverInfo" class="loading">
+            <div class="spinner"></div>
         </div>
-        <div class="card">
-            <h2>Informações das CPUs</h2>
-            <div *ngFor="let cpu of serverInfo.cpus" class="cpu">
-                <p><strong>Model:</strong> {{ cpu.model }}</p>
-                <p><strong>Speed:</strong> {{ cpu.speed }} GHz</p>
-                <p><strong>Times:</strong></p>
-                <ul>
-                    <li><strong>User:</strong> {{ formatTime(cpu.times.user) }}</li>
-                    <li><strong>Nice:</strong> {{ formatTime(cpu.times.nice) }}</li>
-                    <li><strong>Sys:</strong> {{ formatTime(cpu.times.sys) }}</li>
-                    <li><strong>Idle:</strong> {{ formatTime(cpu.times.idle) }}</li>
-                    <li><strong>IRQ:</strong> {{ formatTime(cpu.times.irq) }}</li>
-                </ul>
+        <div *ngIf="serverInfo" class="dashboard">
+            <div class="card">
+                <h2>Informações do Servidor</h2>
+                <p><strong>Hostname:</strong> {{ serverInfo.hostname }}</p>
+                <p><strong>Uptime:</strong> {{ formatUptime(serverInfo.uptime) }}</p>
+                <p><strong>Total Memory:</strong> {{ formatMemory(serverInfo.totalMemory) }}</p>
+                <p><strong>Free Memory:</strong> {{ formatMemory(serverInfo.freeMemory) }}</p>
+                <p><strong>Load Average:</strong> {{ formatLoadAverage(serverInfo.loadAverage) }}</p>
+            </div>
+            <div class="card">
+                <h2>Informações das CPUs</h2>
+                <div *ngFor="let cpu of serverInfo.cpus" class="cpu">
+                    <p><strong>Model:</strong> {{ cpu.model }}</p>
+                    <p><strong>Speed:</strong> {{ cpu.speed }} GHz</p>
+                    <p><strong>Times:</strong></p>
+                    <ul>
+                        <li><strong>User:</strong> {{ formatTime(cpu.times.user) }}</li>
+                        <li><strong>Nice:</strong> {{ formatTime(cpu.times.nice) }}</li>
+                        <li><strong>Sys:</strong> {{ formatTime(cpu.times.sys) }}</li>
+                        <li><strong>Idle:</strong> {{ formatTime(cpu.times.idle) }}</li>
+                        <li><strong>IRQ:</strong> {{ formatTime(cpu.times.irq) }}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

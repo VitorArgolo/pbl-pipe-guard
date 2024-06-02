@@ -1,3 +1,12 @@
+
+.body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    font-family: 'Jost', sans-serif;
+    background: linear-gradient(to bottom, #487585, #999999, #ececec);
+}
 * {
     margin: 0;
 }
