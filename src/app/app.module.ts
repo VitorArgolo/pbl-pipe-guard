@@ -41,6 +41,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     UserStatusComponent,
     PhoneMaskDirective,
     MonitoringListComponent
+ 
   ],
   imports: [
     BrowserModule,

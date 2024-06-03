@@ -1,0 +1,62 @@
+body {
+    font-family: Arial, sans-serif;
+    
+  }
+  
+  .map-container {
+    position: relative;
+    width: 600px;
+    height: 400px;
+    background-color: #f0f0f0;
+    margin: 20px auto;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+  }
+  
+  .sensor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #007bff;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 20px;
+    color: #fff;
+    font-size: 12px;
+    cursor: pointer;
+  }
+  
+  /* Posicionamento dos sensores */
+  #sensor1 { top: 50px; left: 50px; }
+  #sensor2 { top: 100px; left: 150px; }
+  #sensor3 { top: 150px; left: 250px; }
+  #sensor4 { top: 200px; left: 350px; }
+  #sensor5 { top: 250px; left: 450px; }
+  #sensor6 { top: 100px; left: 50px; }
+  #sensor7 { top: 150px; left: 150px; }
+  #sensor8 { top: 200px; left: 250px; }
+  #sensor9 { top: 250px; left: 350px; }
+  #sensor10 { top: 300px; left: 450px; }
+  
+
+
+
+  #about {
+    padding: 0 20%;
+    margin-bottom: 20px;
+  }
+  
+
+    #about {
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      color: #ffffff;
+    }
+
+    p {
+      color: #000000;
+      line-height: 1.5;
+    }
