@@ -6,6 +6,7 @@ import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: 'login', loadChildren: () => import('./login/login.module').then(m => m.LoginModule) },
+  { path: 'about-us', loadChildren: () => import('./about-us/about-us.module').then(m => m.AboutUsModule) },
   { path: 'register', loadChildren: () => import('./register/register.module').then(m => m.RegisterModule) },
   { path: 'incidents', canActivate: [AuthGuard], loadChildren: () => import('./incidents/incidents.module').then(m => m.IncidentsModule) },
   { path: "", redirectTo: "incidents", pathMatch: "full" },
